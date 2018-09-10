@@ -36,6 +36,7 @@ char pop()
 }
 int match(char a,char b)
 {
+	printf("%c %c\n",a,b );
 	if(a=='(' && b==')')
 		return 1;
 	if(a=='{' && b=='}')
@@ -59,16 +60,11 @@ int check(char exp[])
 		if(exp[i]==')' || exp[i]=='}' || exp[i]==']')
 		{
 			if(top==-1)
-			{
-				printf("Right paren are more than left\n");
 				return 0;
-			}
 			else
 			{
 				c=pop();
-				printf("%c\n", c);
-				printf("%c\n", exp[i]);
-				if(match(exp[i],c) == '0')
+				if(match(c,exp[i]) == 0)
 				{
 					printf("parentheses doesn't match\n");
 					return 0;

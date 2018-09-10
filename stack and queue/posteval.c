@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-#define MAX 20
+#define MAX 25
 int top=-1;
 int  stack[MAX];
 
@@ -12,7 +12,7 @@ int power(int a,int b)
 	int p=1;
 	for(int i=0;i<b;i++)
 		p=p*a;
-	return a;
+	return p;
 }
 void push(int c)
 {
@@ -47,7 +47,9 @@ int main()
 	for(int i=0;i<strlen(post);i++)
 	{
 		if(post[i] >='0' && post[i] <='9')
+		{
 			push(post[i] - '0');
+		}
 		else
 		{
 			n1=pop();
@@ -77,11 +79,13 @@ int main()
 				case '^':
 					{
 						temp=power(n2,n1);
-						
+						printf("%d %d \n",temp,temp );
+						break;
 					} 
-				push(temp);
+				
 			}
-
+				push(temp);
+				printf("%d\n",top );
 		}
 	}
 	result=pop();
