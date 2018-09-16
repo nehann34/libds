@@ -47,11 +47,12 @@ void dijkstra(int s)
 	while(1)
 	{
 		current=find_min();
+		if(current==NIL)
+				return;
 		state[current]=permanent;
 		for(int i=0;i<n;i++)
 		{
-			if(current==NIL)
-				return;
+			
 			if(adj[current][i]!=0 && state[i]==temporary)
 			{
 				if(pathlength[current]+adj[current][i] < pathlength[i])
@@ -70,7 +71,10 @@ void findpath(int s,int d)
 	int pre;
 	pre=pred[d];
 	if(pre==NIL)
+	{
+		printf("%d\n",d);
 		return;
+	}
 	findpath(s,pre);
 	printf("%d\n",d);
 }
