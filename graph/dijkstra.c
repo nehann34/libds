@@ -7,9 +7,9 @@
 
 int n;
 int adj[MAX][MAX]={0};
-int pathlength[MAX]={infinite};
+int pathlength[MAX];
 int pred[MAX]={NIL};
-int state[MAX]={temporary};
+int state[MAX];
 
 void create_graph()
 {
@@ -52,7 +52,6 @@ void dijkstra(int s)
 		{
 			if(current==NIL)
 				return;
-			state[current]=permanent;
 			if(adj[current][i]!=0 && state[i]==temporary)
 			{
 				if(pathlength[current]+adj[current][i] < pathlength[i])
@@ -73,7 +72,7 @@ void findpath(int s,int d)
 	if(pre==NIL)
 		return;
 	findpath(s,pre);
-	printf("%d\n",pre);
+	printf("%d\n",d);
 }
 
 int main()
@@ -82,6 +81,13 @@ int main()
 	create_graph();
 	printf("Enter source vertex to start with\n");
 	scanf("%d",&source);
+	for(int i=0;i<n;i++)
+		pathlength[i]=infinite;
+	for(int i=0;i<n;i++)
+		pred[i]=NIL;
+	for(int i=0;i<n;i++)
+		state[i]=temporary;
+
 	dijkstra(source);
 	printf("enter dest vertex to find the shortest path\n");
 	scanf("%d",&dest);
